@@ -1,0 +1,29 @@
+$ --> html 選擇器
+
+<-- CSS -->
+.css('css元素','值')
+	ex: vidoe.css('display','none') backIMG.css('background-image',"url('./img2.jpg')")
+
+<-- VideoTag -->
+.prop('string',狀態)
+	ex: video.prop('muted',true)
+.trigger('string') --> 事件觸發
+	ex: video.trigger('play')  video.trigger('pause')
+
+<-- 事件觸發 -->
+.on('string', function())
+	ex: btn.on('click',() => {}) video.on('load')
+.bind('string', function())
+.attr('string','string')
+	ex: matterport.attr('src','https://my.matterport.com/show/?m=LXMFXYiU8Mc&play=1')  img.attr('src','./img.png')
+.removeAttr('string')
+	ex: video.removeAttr('src')
+.addClass('string')
+	ex: btn.addClass('active')
+.removeClass('string')
+	ex: btn.removeClass('active')
+
+<-- Object -->
+$(window) --> window
+$(document) --> document 
+

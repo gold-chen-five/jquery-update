@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .one {
+            color: black;
+        }
+        .video {
+            display: none;
+        }
+        .btn.active {
+            color: red;
+        }
+        .img {
+            width: 500px;
+            object-fit: contain;
+        }
+        .backIMG {
+            width: 300px;
+            height: 300px;
+            background-image: url('./img.png');
+        }
+    </style>
+</head>
+<body>
+    <button class="one btn">1</button>
+    <button class="two btn">2</button>
+    <button class="playVideo btn">play</button>
+    <video class="video" src="./example.mp4" autoplay muted playsinline></video>
+    <div>
+        <button class="page1">page1</button>
+        <button class="page2">page2</button>
+        <iframe width="650" height="350" class="matterport" src='https://my.matterport.com/show/?m=6sxNQxbW38v&play=1' frameborder='0' allowfullscreen allow='xr-spatial-tracking'></iframe>
+        <img src="./img.png" class="img">
+        <div class="backIMG"></div>
+    </div>
+   
+
+    <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
+    <script type="module">
+        const one = $('.one')
+        const two = $('.two')
+        const play = $('.playVideo')
+        const video = $('.video')
+        const btn = $('.btn')
+        const matterport = $('.matterport')
+        const page1 = $('.page1')
+        const page2 = $('.page2')
+        const img = $('img')
+        const backIMG = $('.backIMG')
+
+        //events
+        const removeVideo = () => {
+            video.prop('muted',true)
+            video.trigger('pause')
+            video.removeAttr('src')
+            video.on('load')
+            video.css('display','none')
+        }
+        const videoplay = () => {
+            console.log("play")
+            video.css('display','block')
+            btn.addClass('active')
+            console.log(btn)
+            setTimeout(()=>{
+                video.prop('muted',false)
+            },30)   
+        }
+        const matterportClick = (page) => {
+            if(page === 'page1'){
+                matterport.attr('src','https://my.matterport.com/show/?m=6sxNQxbW38v&play=1')
+                img.attr('src','./img.png')
+                backIMG.css('background-image',"url('./img.png')")
+
+            }else if(page === 'page2'){
+                matterport.attr('src','https://my.matterport.com/show/?m=LXMFXYiU8Mc&play=1')
+                img.attr('src','./img2.jpg')
+                backIMG.css('background-image',"url('./img2.jpg')")
+            }
+        }
+
+        //click
+        play.on('click',videoplay)
+        one.on('click',() => {
+            //one.css("color","red")
+            video.trigger('play')
+            video.prop('muted',false)
+            btn.removeClass('active')
+        })
+        two.on('click',removeVideo)
+
+        video.on('ended',() => {
+            video.prop('muted',true)
+            video.removeAttr('src')
+            video.on('load')
+            video.css('display','none')
+        })
+        // $(window).on('resize',() => {
+        //     alert('resize')
+        // })
+
+        page1.on('click', () => matterportClick('page1'))
+        page2.on('click', () => matterportClick('page2'))
+    </script>
+</body>
+</html>
