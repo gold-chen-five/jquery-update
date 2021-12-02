@@ -9,6 +9,8 @@ $ --> html 選擇器
 	ex: video.prop('muted',true)
 .trigger('string') --> 事件觸發
 	ex: video.trigger('play')  video.trigger('pause')
+.removeAttr('string')
+	ex: video.removeAttr('src')
 
 <-- 事件觸發 -->
 .on('string', function())
