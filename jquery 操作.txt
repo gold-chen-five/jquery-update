@@ -29,3 +29,5 @@ $ --> html 選擇器
 $(window) --> window
 $(document) --> document 
 
+add new
+
